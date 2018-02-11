@@ -5,9 +5,11 @@ const db = new sqlite3.Database('./carsales.db', sqlite3.OPEN_READWRITE, (err) =
 	if(err){
 		console.error(err.message);
 	}
-	console.log('total_sales: connected to DB succesfully');
+	// Following line was used for debugging
+	//console.log('total_sales: connected to DB succesfully');
 });
 
+// get complete list of current eployees, along with their current sales total
 route.get('/', (req, res, next) => {
 	db.serialize(() => {
 		let sql = 'SELECT e.*, SUM(c.price) AS sum FROM sales AS s JOIN employees AS e ON s.employee_id = e.id JOIN carmodels AS c ON s.carmodel_id = c.id GROUP BY e.id';

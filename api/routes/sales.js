@@ -5,9 +5,11 @@ const db = new sqlite3.Database('./carsales.db', sqlite3.OPEN_READWRITE, (err) =
 	if(err){
 		console.error(err.message);
 	}
-	console.log('sales: connected to DB succesfully');
+	// Following line was used for debugging
+	//console.log('sales: connected to DB succesfully');
 });
 
+// get a list of all sales, which employee handled it and what car was sold
 route.get('/', (req, res, next) => {
 	db.serialize(() => {
 		db.all('SELECT * FROM sales', (err, rows) => {
@@ -27,10 +29,12 @@ route.get('/', (req, res, next) => {
 	});
 });
 
+// get a specific sale by its sales_id
 route.get('/:salesID', (req, res, next) => {
 	const salesID = req.params.salesID;
 	db.serialize(() => {
-		db.all('SELECT * FROM sales WHERE id = ?', salesID, (err, rows) => {
+		let sql ='SELECT * FROM sales WHERE id = ?';
+		db.all(sql, salesID, (err, rows) => {
 			if(err){
 				console.error(err.message);
 			}
