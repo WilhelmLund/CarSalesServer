@@ -5,7 +5,9 @@ Open a console and navigate to that directory.
 
 run the following command in the command line:
 
+```
 sqlite3 carsales.db < carsales.sql
+```
 
 This will create the database with some initial data included.
 Next, run the following command:
