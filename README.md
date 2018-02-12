@@ -1,4 +1,4 @@
-# CarSalesServer
+# CarSalesServer Initiation
 
 Pull down the files in the git in to a suitable directory.
 Open a console and navigate to that directory.
