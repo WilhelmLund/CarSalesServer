@@ -74,7 +74,7 @@ route.delete('/', (req, res, next) => {
 	const employeeID = req.body.id;
 	db.serialize(() => {
 		let sql = 'DELETE FROM employees WHERE id = ?';
-		db.run(sql, carmodelID, (err) => {
+		db.run(sql, employeeID, (err) => {
 			if(err){
 				console.error(err.message);
 			}

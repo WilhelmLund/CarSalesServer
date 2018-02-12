@@ -32,7 +32,7 @@ route.get('/', (req, res, next) => {
 
 // get details of a specific carmodel by its carmodel_id
 route.get('/:carmodelID', (req, res, next) => {
-	const carmodelID = req.body.carmodelID;
+	const carmodelID = req.params.carmodelID;
 	db.serialize(() => {
 		let sql = 'SELECT * FROM carmodels WHERE id = ?';
 		db.all(sql, carmodelID, (err, rows) => {
@@ -75,8 +75,8 @@ route.post('/', (req, res, next) => {
 // delete existing carmodel from database
 // It may be a better to send the ID in body rather than DELETE /carmodels/modelID
 // Should return something more appropriate than a simple 'message'
-route.delete('/:carmodelID', (req, res, next) => {
-	const carmodelID = req.params.carmodelID;
+route.delete('/', (req, res, next) => {
+	const carmodelID = req.body.id;
 	db.serialize(() => {
 		let sql = 'DELETE FROM carmodels WHERE id = ?';
  		db.run(sql, carmodelID,  (err) => {
